@@ -7,12 +7,14 @@ namespace VersionUpdate
 	{
 		static void Main(string[] args)
 		{
-			string data;
-			using (WebClient client = new WebClient())
+			VersionUpdater versionUpdater = new VersionUpdater();
+			versionUpdater.LogFile = "https://raw.githubusercontent.com/1dxrpz/VersionUpdate/master/README.md";
+
+			versionUpdater.Update();
+			if (!versionUpdater.IsLatest)
 			{
-				data = client.DownloadString("https://raw.githubusercontent.com/1dxrpz/VersionUpdate/master/README.md");
+				Console.WriteLine("file outdated");
 			}
-			Console.WriteLine(data);
 		}
 	}
 }
