@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace VersionUpdate
 {
@@ -6,7 +7,12 @@ namespace VersionUpdate
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			string data;
+			using (WebClient client = new WebClient())
+			{
+				data = client.DownloadString("https://raw.githubusercontent.com/1dxrpz/VersionUpdate/master/README.md");
+			}
+			Console.WriteLine(data);
 		}
 	}
 }
